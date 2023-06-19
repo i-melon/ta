@@ -1,0 +1,44 @@
+{% load static %}
+<doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>target analizer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'analizer/css/index.css' %}">
+</head>
+<body>
+    <div class="global">
+        <div class="appBar">
+            <div class="logo">
+                <h2 class="firstWord">TARGET</h2>
+                <h2 class="secondWord">ANALIZER</h2>
+            </div>
+<!--            <a href="/about", class="link">About us</a>-->
+        </div>
+        <form  method="post", class="searchLine">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">DONE</button>
+            <span>{{ error }}</span>
+        </form>
+
+        <div class="homePage" >
+            <div class="result">
+                {% for el in results %}
+                <div class="item">
+                    <h3>inst: @{{ el.name }}</h3>
+                    <p>{{ el.category }}</p>
+                    <p>{{ el.city }}</p>
+                </div>
+                {% endfor %}
+            </div>
+    </div>
+        <div class="sizedBox"></div>
+    </div>
+
+</body>
+</html>
